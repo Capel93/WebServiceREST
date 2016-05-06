@@ -1,5 +1,7 @@
 package com.mycompany.webservicerest;
 
+import Controller.ConnectionJDBC;
+import Model.Video;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -27,12 +29,15 @@ public class MyResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public int getViewsByID(int id) {
-        
-        return 0;
+        ConnectionJDBC.connect();
+        Video video = ConnectionJDBC.getVideoByID(id);
+        return video.getViews();
     }
     
     @POST
     public void newView(int id){
+        ConnectionJDBC.connect();
+        ConnectionJDBC.addView(id);
         
     }
 }

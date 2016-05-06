@@ -278,7 +278,7 @@ public class ConnectionJDBC {
             ResultSet rs;
             statement = connection.createStatement();
             statement.setQueryTimeout(30);
-            rs = statement.executeQuery("SELECT * FROM videos WHERE id='"+id+"'");
+            rs = statement.executeQuery("SELECT * FROM videos WHERE id="+id+"");
             videos = new ArrayList();
             while(rs.next()){
                 Video v = new Video();
@@ -315,7 +315,7 @@ public class ConnectionJDBC {
                 Statement statement;
                 statement = connection.createStatement();
                 statement.setQueryTimeout(30);
-                return statement.executeUpdate("UPDATE videos SET views='"+v.getViews()+"' WHERE id='"+v.getId()+"';");
+                return statement.executeUpdate("UPDATE videos SET views="+v.getViews()+" WHERE id="+v.getId()+";");
             } catch (SQLException ex) {
                 Logger.getLogger(ConnectionJDBC.class.getName()).log(Level.SEVERE, null, ex);
                 return -1;
